@@ -1,9 +1,4 @@
 
-current = "";
-queryString = "";
-currentMonth = "08";
-currentYear = "2016";
-
   var getStartOfMonth = function(year, month) {
 
       var day = new Date(year + "-" + month + "-01").getDay();
@@ -43,13 +38,15 @@ currentYear = "2016";
 
           btn = document.createElement("BUTTON"); // Create a <button> element
           t = document.createTextNode((i + 1).toString()); // Create a text node
+          btn.setAttribute('class', 'w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey');
+          btn.setAttribute('style','font-weight:900');
           btn.appendChild(t); // Append the text to <button>
           td = document.getElementById(days[i + firstDay]);
           td.appendChild(btn);
           btn.onclick = (function(x) {
               return function() {
                   //put function name that takes in  the value i and sets it to currentDay
-                  update(x);
+                  update2(x);
               }
           })((i + 1).toString());
 
@@ -57,10 +54,8 @@ currentYear = "2016";
 
   }
 
-  function update (x) {
-    queryString = currentMonth+x+currentYear;
-    console.log(queryString);
+  function update2 (x) {
+    queryString = currentMonth+x.toString()+currentYear;
+    readEvent(queryString);
     return;
   }
-
-  setupCalendar(2016, 1);

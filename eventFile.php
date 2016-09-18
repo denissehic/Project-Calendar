@@ -12,23 +12,7 @@ echo readfile($file) . "<br>";
 
 $outFile = fopen($file, "a+");
 
-fwrite($outFile, $date . ": " . $description . nl2br());
-
-
-
+fwrite($outFile, $date . ": " . $description . "\n");
 
 fclose($outFile);
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>

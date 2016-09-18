@@ -1,3 +1,4 @@
+//Add event for certain day
 function addEvent(queryString) {
     var event = {
         date: "no date",
@@ -17,7 +18,7 @@ function addEvent(queryString) {
     }
 }
 
-
+///Get all events for a specified date
 function readEvent(queryString) {
     var eventReader = {
         dateLookup: "no date",
@@ -35,4 +36,22 @@ function readEvent(queryString) {
 
         });
     }
+}
+
+function removeEvent(queryString) {
+    var eventFinder = {
+        dateLookup: "no date",
+        ind: 0
+    };
+
+    var dateID = queryString;
+    eventFinder.dateLookup = queryString;
+    var indInput = prompt("Enter the index");
+    eventFinder.ind = indInput;
+
+    $.post("eventRemover.php", eventFinder, function(data) {
+        document.getElementById("event3").innerHTML = data;
+    });
+
+
 }

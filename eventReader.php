@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $file = "eventInformation.txt";
 $lines = file($file);
@@ -15,13 +15,13 @@ for($i = 0; $i < sizeof($lines); $i++)
 {
     if(substr($lines[$i],0,8) == $dateLook)
     {
-        echo $lines[$i] . "<br>";
+        echo $i . ". " . substr($lines[$i],9) . "<br>";
     }
 }
 
 /*while(!feof($inFile))
 {
-   
+
 }*/
 
 fclose($inFile);
