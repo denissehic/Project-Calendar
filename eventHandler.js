@@ -7,13 +7,15 @@ function addEvent(queryString) {
 
     event.date = queryString;
     //var datePromptInput = prompt(event.date);
-    if (queryString.length() != 8) {
+    if (queryString.length != 8) {
         //document.getElementById("event").innerHTML = "You added an event on " + event.date + " and the event is:  " + event.description;
         alert("Please select date.");
+    }else {
+        var descriptionPromptInput = prompt("What is your event?");
+        event.description = descriptionPromptInput;
     }
 
-    var descriptionPromptInput = prompt("What is your event?");
-    event.description = descriptionPromptInput;
+
 
 
     if (descriptionPromptInput == "")
@@ -52,14 +54,21 @@ function removeEvent(queryString) {
         ind: 0
     };
 
-    var dateID = queryString;
-    eventFinder.dateLookup = queryString;
-    var indInput = prompt("Enter the index");
-    eventFinder.ind = indInput;
+    if (queryString.length != 8) {
+        //document.getElementById("event").innerHTML = "You added an event on " + event.date + " and the event is:  " + event.description;
+        alert("Please select date.");
+    }else {
+        var dateID = queryString;
+        eventFinder.dateLookup = queryString;
+        var indInput = prompt("Enter the index");
+        eventFinder.ind = indInput;
 
-    $.post("eventRemover.php", eventFinder, function(data) {
-        document.getElementById("event3").innerHTML = data;
-    });
+        $.post("eventRemover.php", eventFinder, function(data) {
+            document.getElementById("event3").innerHTML = data;
+        });
+
+    }
+
 
 
 }
