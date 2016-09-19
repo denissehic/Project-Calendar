@@ -1,4 +1,3 @@
-
 /**
 Initialize the currentMonth, currentYear, and queryString
 variables. currentMonth and currentYear are used to
@@ -78,6 +77,7 @@ may.setAttribute('class', 'w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey');
 may.setAttribute('style','font-weight:900');
 may.appendChild(document.createTextNode('May'));
 may.onclick = function() {update("05","2017"); setupCalendar("2017", 5)};
+
 
 
 var wrapper = document.getElementById('wrapper');

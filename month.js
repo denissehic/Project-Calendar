@@ -33,6 +33,37 @@ var setupCalendar = function(year, month) {
     console.log(getStartOfMonth(year, month));
     console.log(firstDay);
 
+    if(month === 8){
+      document.getElementById("monthName").innerHTML = "August";
+    }
+    else if(month === 9){
+      document.getElementById("monthName").innerHTML = "September";
+    }
+    else if(month === 10){
+      document.getElementById("monthName").innerHTML = "October";
+    }
+    else if(month === 11){
+      document.getElementById("monthName").innerHTML = "November";
+    }
+    else if(month === 12){
+      document.getElementById("monthName").innerHTML = "December";
+    }
+    else if(month === 1){
+      document.getElementById("monthName").innerHTML = "January";
+    }
+    else if(month === 2){
+      document.getElementById("monthName").innerHTML = "February";
+    }
+    else if(month === 3){
+      document.getElementById("monthName").innerHTML = "March";
+    }
+    else if(month === 4){
+      document.getElementById("monthName").innerHTML = "April";
+    }
+    else if(month === 5){
+      document.getElementById("monthName").innerHTML = "May";
+    }
+
     for (i = 0; i < lastDay; i++) {
 
         btn = document.createElement("BUTTON"); // Create a <button> element
@@ -66,8 +97,15 @@ var clearCalendar = function() {
         days.push("saturday" + i.toString());
     }
 
+<<<<<<< HEAD
     for (i = 0; i < days.length; i++) {
         td = document.getElementById(days[i]).innerHTML = "";
+=======
+    document.getElementById("monthName").innerHTML = ""
+
+    for (i = 0; i < days.length; i++) {
+        document.getElementById(days[i]).innerHTML = "";
+>>>>>>> origin/master
     }
 
 }
