@@ -4,17 +4,25 @@ function addEvent(queryString) {
         date: "no date",
         description: "no description"
     };
+
     event.date = queryString;
     //var datePromptInput = prompt(event.date);
-
+    if (queryString.length() != 8) {
+        //document.getElementById("event").innerHTML = "You added an event on " + event.date + " and the event is:  " + event.description;
+        alert("Please select date.");
+    }
 
     var descriptionPromptInput = prompt("What is your event?");
     event.description = descriptionPromptInput;
 
 
-    if (event.date != null && descriptionPromptInput != null) {
-        document.getElementById("event").innerHTML = "You added an event on " + event.date + " and the event is:  " + event.description;
+    if (descriptionPromptInput == "")
+    {
+        alert("Please type in an event.")
+    }
+    else {
         $.post("eventFile.php", event);
+        readEvent(queryString);
     }
 }
 
