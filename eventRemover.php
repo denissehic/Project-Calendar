@@ -1,5 +1,11 @@
 <?php
-
+/**
+    A date and index is received from "eventHandler.js".
+    This file opens up and clears "eventInformation.txt" and scans all indeces of the events.
+    If the index of the event in this file does NOT match up with the event sent
+    from the JS file, the line gets rewritten onto "eventInformation.txt".
+    Otherwise, the line is not written on the text file.
+*/
 $file = "eventInformation.txt";
 $lines = file($file);
 date_default_timezone_set("America/Chicago");

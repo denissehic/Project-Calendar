@@ -1,5 +1,9 @@
 <?php
-
+/**
+    A date string is received from "eventHandler.js".
+    This file opens up "eventInformation.txt" and looks for all dates matching the date received from the JS file.
+    If the dates match then that line with the matching dates get sent back to "eventHandler.js" and is displayed on the web page.
+*/
 $file = "eventInformation.txt";
 $lines = file($file);
 date_default_timezone_set("America/Chicago");

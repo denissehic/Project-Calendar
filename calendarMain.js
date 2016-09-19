@@ -79,7 +79,9 @@ may.setAttribute('style','font-weight:900');
 may.appendChild(document.createTextNode('May'));
 may.onclick = function() {update("05","2017"); setupCalendar("2017", 5)};
 
-
+/**
+This appends all the buttons to the header to create a year view of the year.
+*/
 var wrapper = document.getElementById('wrapper');
 wrapper.appendChild(aug);
 wrapper.appendChild(sep);
@@ -91,5 +93,7 @@ wrapper.appendChild(feb);
 wrapper.appendChild(mar);
 wrapper.appendChild(apr);
 wrapper.appendChild(may);
-
+/**
+This starts the program off on the first mon of the academic year.
+*/
 document.getElementById("calendar").onload = function() {setupCalendar("2016",8)};

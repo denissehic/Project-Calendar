@@ -1,4 +1,8 @@
-//Add event for certain day
+/**
+This function take the queryString and validates that it is in the correct
+MMDDYYYY format.Then it asks the user to inout the event for the day.
+Then it calls the php script to place the event in eventInformaion.txt
+*/
 function addEvent(queryString) {
     var event = {
         date: "no date",
@@ -6,29 +10,28 @@ function addEvent(queryString) {
     };
 
     event.date = queryString;
-    //var datePromptInput = prompt(event.date);
+
     if (queryString.length != 8) {
-        //document.getElementById("event").innerHTML = "You added an event on " + event.date + " and the event is:  " + event.description;
+
         alert("Please select date.");
-    }else {
+    } else {
         var descriptionPromptInput = prompt("What is your event?");
         event.description = descriptionPromptInput;
     }
 
-
-
-
-    if (descriptionPromptInput == "")
-    {
+    if (descriptionPromptInput == "") {
         alert("Please type in an event.")
-    }
-    else {
+    } else {
         $.post("eventFile.php", event);
         readEvent(queryString);
     }
 }
 
-///Get all events for a specified date
+/**
+This function takes the queryString and validates it to ensure it is in the
+right MMDDYYYY format. Then it calls the php script to read all the events
+for the specified date. Then it is displayed to the user.
+*/
 function readEvent(queryString) {
     var eventReader = {
         dateLookup: "no date",
@@ -37,7 +40,6 @@ function readEvent(queryString) {
 
     var dateID = queryString;
     eventReader.dateLookup = dateID;
-    //document.getElementById("event").innerHTML = EventList;
     if (dateID != null) {
         document.getElementById("event2").innerHTML = "Reading events...";
         $.post("eventReader.php", eventReader, function(data) {
@@ -48,6 +50,11 @@ function readEvent(queryString) {
     }
 }
 
+/**
+This function takes the queryString and validates it to ensure it is in the
+right MMDDYYYY format. Then it calls the php script to to delete the specified
+event by the user on that date.
+*/
 function removeEvent(queryString) {
     var eventFinder = {
         dateLookup: "no date",
@@ -55,9 +62,8 @@ function removeEvent(queryString) {
     };
 
     if (queryString.length != 8) {
-        //document.getElementById("event").innerHTML = "You added an event on " + event.date + " and the event is:  " + event.description;
         alert("Please select date.");
-    }else {
+    } else {
         var dateID = queryString;
         eventFinder.dateLookup = queryString;
         var indInput = prompt("Enter the index");
@@ -66,9 +72,6 @@ function removeEvent(queryString) {
         $.post("eventRemover.php", eventFinder, function(data) {
             document.getElementById("event3").innerHTML = data;
         });
-
     }
-
-
 
 }

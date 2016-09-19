@@ -1,0 +1,18 @@
+Citations for Najeeb Lakhani:
+
+http://stackoverflow.com/questions/16303954/setting-button-text-via-javascript
+This was used in the calendarMain.js to set the attributes of a button.
+Also used to place buttons in the right place
+
+http://stackoverflow.com/questions/5774042/format-a-number-exactly-two-in-length
+This was used in month.js to ensure that the queryString was in the right format
+to be passed to the php.
+
+http://stackoverflow.com/questions/7413190/how-can-i-separate-a-number-and-get-the-first-two-digits-in-php
+This was used in the readEvent.php to format the code so that it was displayed to the user in
+MM/DD/YYYY format rather than MMDDYYYY.
+
+
+http://www.w3schools.com/w3css/tryw3css_templates_black.htm
+The html design was based off of the template provided by W3 schools
+to use. There were heavy cuts and mods made to the code for our project.
