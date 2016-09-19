@@ -1,0 +1,10 @@
+
+getDaysInMonth():
+http://www.w3resource.com/javascript-exercises/javascript-date-exercise-3.php
+
+getStartOfMonth():
+http://stackoverflow.com/questions/13669786/how-can-i-get-which-day-of-week-month-starts-on-from-for-given-input-of-month-an
+
+setupCalendar():
+http://stackoverflow.com/questions/5040069/javascript-dynamically-assign-onclick-event-in-the-loop
+
