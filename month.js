@@ -1,3 +1,8 @@
+
+/**
+ * getStartOfMonth takes in a year and a month and returns an number 1-7 for
+ * what day of the week the month starts on.
+ */
 var getStartOfMonth = function(year, month) {
 
     var day = new Date(year + "-" + month + "-01").getDay();
@@ -6,15 +11,19 @@ var getStartOfMonth = function(year, month) {
 
 }
 
-
-
-//src: http://www.w3resource.com/javascript-exercises/javascript-date-exercise-3.php
+/**
+ * getDaysInMonth takes in a year and a month and returns the number of days
+ * in the month. src: http://www.w3resource.com/javascript-exercises/javascript-date-exercise-3.php
+ */
 var getDaysInMonth = function(year, month) {
     return new Date(year, month, 0).getDate();
 }
 
 
-
+/**
+ * setupCalendar takes in a year and a month and appends the digits of the days
+ * onto the calendar table.
+ */
 var setupCalendar = function(year, month) {
     clearCalendar();
     var days = [];
@@ -57,16 +66,15 @@ var setupCalendar = function(year, month) {
 
     for (i = 0; i < lastDay; i++) {
 
-        btn = document.createElement("BUTTON"); // Create a <button> element
-        t = document.createTextNode((i + 1).toString()); // Create a text node
+        btn = document.createElement("BUTTON");
+        t = document.createTextNode((i + 1).toString());
         btn.setAttribute('class', 'w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey');
         btn.setAttribute('style', 'font-weight:900');
-        btn.appendChild(t); // Append the text to <button>
+        btn.appendChild(t);
         td = document.getElementById(days[i + firstDay]);
         td.appendChild(btn);
         btn.onclick = (function(x) {
             return function() {
-                //put function name that takes in  the value i and sets it to currentDay
                 update2(x);
             }
         })((i + 1).toString());
@@ -75,6 +83,9 @@ var setupCalendar = function(year, month) {
 
 }
 
+/**
+ * clearCalendar deletes the buttons with the digits of the days from the calendar table
+ */
 var clearCalendar = function() {
 
     var days = [];
@@ -94,7 +105,10 @@ var clearCalendar = function() {
 
 }
 
-
+/**
+ * update2 takes in a day and generates a concatenated string to update the queryString
+ * global variable.
+ */
 function update2(x) {
     function pad(d) {
         return (d < 10) ? '0' + d.toString() : d.toString();
