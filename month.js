@@ -16,7 +16,7 @@ var getDaysInMonth = function(year, month) {
 
 
 var setupCalendar = function(year, month) {
-
+    clearCalendar();
     var days = [];
     for (i = 0; i <= 5; i++) {
         days.push("sunday" + i.toString());
@@ -52,6 +52,26 @@ var setupCalendar = function(year, month) {
     }
 
 }
+
+var clearCalendar = function() {
+
+    var days = [];
+    for (i = 0; i <= 5; i++) {
+        days.push("sunday" + i.toString());
+        days.push("monday" + i.toString());
+        days.push("tuesday" + i.toString());
+        days.push("wednesday" + i.toString());
+        days.push("thursday" + i.toString());
+        days.push("friday" + i.toString());
+        days.push("saturday" + i.toString());
+    }
+
+    for (i = 0; i < days.length; i++) {
+        td = document.getElementById(days[i]).innerHTML = "";
+    }
+
+}
+
 
 function update2(x) {
     function pad(d) {
