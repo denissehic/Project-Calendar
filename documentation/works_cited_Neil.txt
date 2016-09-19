@@ -1,0 +1,11 @@
+The file "eventHandler.js" sends data using the $.post() method from ajax.  The following Stack Exchange question helped me connect
+the $.post() method and file IO in PHP properly:
+
+  http://stackoverflow.com/questions/406316/how-to-pass-data-from-javascript-to-php-and-vice-versa
+  
+All file IO written in PHP was possible from W3 schools:
+  http://www.w3schools.com/php/php_file_open.asp
+  
+The prompt boxes that display were made possible by using the following W3 example: 
+  http://www.w3schools.com/js/tryit.asp?filename=tryjs_prompt
+  
