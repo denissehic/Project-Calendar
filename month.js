@@ -18,6 +18,8 @@
 
   var setupCalendar = function(year, month) {
 
+      if()
+
       var days = [];
       for (i = 0; i <= 5; i++) {
           days.push("sunday" + i.toString());
@@ -49,6 +51,47 @@
                   update2(x);
               }
           })((i + 1).toString());
+
+      }
+
+  }
+
+  var clearCalendar = function(month, year) {
+
+      var days = [];
+      for (i = 0; i <= 5; i++) {
+          days.push("sunday" + i.toString());
+          days.push("monday" + i.toString());
+          days.push("tuesday" + i.toString());
+          days.push("wednesday" + i.toString());
+          days.push("thursday" + i.toString());
+          days.push("friday" + i.toString());
+          days.push("saturday" + i.toString());
+      }
+
+      //var firstDay = getStartOfMonth(year, month);
+      //var lastDay = getDaysInMonth(year, month);
+      //console.log(getStartOfMonth(year, month));
+      //console.log(firstDay);
+
+      for (i = 0; i < days.length; i++) {
+          /*
+          btn = document.createElement("BUTTON"); // Create a <button> element
+          t = document.createTextNode((i + 1).toString()); // Create a text node
+          btn.setAttribute('class', 'w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey');
+          btn.setAttribute('style','font-weight:900');
+          btn.appendChild(t); // Append the text to <button>
+          */
+          td = document.getElementById(days[i]);
+          td.removeChild();
+          /*
+          btn.onclick = (function(x) {
+              return function() {
+                  //put function name that takes in  the value i and sets it to currentDay
+                  update2(x);
+              }
+          })((i + 1).toString());
+          */
 
       }
 

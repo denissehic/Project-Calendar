@@ -69,6 +69,12 @@ may.setAttribute('style','font-weight:900');
 may.appendChild(document.createTextNode('May'));
 may.onclick = function() {update("05","2017"); setupCalendar("2017", 5)};
 
+var reset = document.createElement('button');
+may.setAttribute('class', 'w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey');
+may.setAttribute('style','font-weight:900');
+may.appendChild(document.createTextNode('Reset'));
+may.onclick = function() {update("00","0000"); setupCalendar("0", 0)};
+
 
 var wrapper = document.getElementById('wrapper');
 wrapper.appendChild(aug);
@@ -81,3 +87,4 @@ wrapper.appendChild(feb);
 wrapper.appendChild(mar);
 wrapper.appendChild(apr);
 wrapper.appendChild(may);
+wrapper.appendChild(reset);
