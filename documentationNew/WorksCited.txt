@@ -2,3 +2,5 @@ Denis Sehic:
 Week View method was created from modified version of:
 http://stackoverflow.com/questions/22218291/toggle-hide-show-tr-using-jquery
 
+Show/Hide div:
+http://stackoverflow.com/questions/13888093/how-to-show-hide-a-form-on-button-click-in-jquery

@@ -200,7 +200,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 w3-border w3-border-black">
-                  <div id = "eventAdder">
+                  <div id = "eventAdder" style="display:none">
                     <form>
                       <label for="date">Enter Date</label>
                       <input type="date" id="event_date"><br>
@@ -219,6 +219,13 @@
                         <input type="date" id="end_date"><br>
                       </div>
 
+                      Recurring Event?
+                      <input type="checkbox" name="rec" id="rec" value="0" />
+                      <div id="rec" style="display:none">
+                      <input type="radio" name="rec" id="weekly" value="1"/> Weekly<br>
+                      <input type="radio" name="rec" id="biweekly" value="2" /> Biweekly<br>
+                      <input type="radio" name="rec" id="monthly" value="4" /> Monthly
+                      </div>
                       <br>
                       <label for="date">Enter event</label>
                       <input type="text" class="form-control" id="event_date">  <br>
@@ -229,7 +236,7 @@
                     <div id="event3"></div>
                 </div>
                 <div class="w3-btn-group w3-padding-top w3-center">
-                    <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black" id="btnEventWrite" onclick="javascript: addEvent(queryString)">Create a new event</button>
+                    <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black" id="btnEventWrite" >Create a new event</button>
                     <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black" id="btnEventRead" onclick="javascript : readEvent(queryString)">View events</button>
                     <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black " id="btnEvenRemove" onclick="javascript: removeEvent(queryString)">Remove an event</button>
                 </div>

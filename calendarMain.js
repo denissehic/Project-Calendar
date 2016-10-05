@@ -17,11 +17,25 @@ function update(month,year) {
     currentMonth = month;
     currentYear = year;
 }
+
+/**
+Functions added to show/hide forms in the Event adder
+*/
+$("#btnEventWrite").click(function(e) {
+    $("#eventAdder").toggle();
+
+    e.preventDefault();
+});
+
 $('#time').change(function() {
     $(this).next('div').toggle();
 });
 
 $('#mult').change(function() {
+    $(this).next('div').toggle();
+});
+
+$('#rec').change(function() {
     $(this).next('div').toggle();
 });
 
