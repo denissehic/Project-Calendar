@@ -28,16 +28,22 @@ $("#btnEventWrite").click(function(e) {
 
 $('#time').change(function() {
     $(this).next('div').toggle();
+    document.getElementById("start_time").value="";
+    document.getElementById("end_time").value="";
 });
 
 $('#mult').change(function() {
     $(this).next('div').toggle();
+    document.getElementById("end_date").value="";
     $('#rec').toggle();
     $('#recT').toggle();
 });
 
 $('#rec').change(function() {
     $(this).next('div').toggle();
+    document.getElementById("weekly").checked = false;
+    document.getElementById("biweekly").checked = false;
+    document.getElementById("monthly").checked = false;
     $('#mult').toggle();
     $('#multT').toggle();
 });
