@@ -203,7 +203,7 @@
                   <div id = "eventAdder" style="display:none">
                     <form>
                       <label for="date">Enter Date</label>
-                      <input type="date" id="event_date"><br>
+                      <input type="date" id="event_date" required><br>
 
                       Time Frame?
                       <input type="checkbox" name="time" id="time" value="0" />
@@ -229,6 +229,7 @@
                       <br>
                       <label for="date">Enter event</label>
                       <input type="text" class="form-control" id="event_date">  <br>
+                      <button type="button" class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black" >Submit</button>
                   </form>
                 </div>
                     <div id="event"></div>
@@ -239,6 +240,9 @@
                     <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black" id="btnEventWrite" >Create a new event</button>
                     <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black" id="btnEventRead" onclick="javascript : readEvent(queryString)">View events</button>
                     <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black " id="btnEvenRemove" onclick="javascript: removeEvent(queryString)">Remove an event</button>
+                    <div id = "mon" style = "display:none">
+                    <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black " id="monthView">Back to Month View</button>
+                    </div>
                 </div>
             </div>
         </div>
