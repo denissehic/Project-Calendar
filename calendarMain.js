@@ -32,11 +32,14 @@ $('#time').change(function() {
 
 $('#mult').change(function() {
     $(this).next('div').toggle();
+    $('#rec').toggle();
+    $('#recT').toggle();
 });
 
 $('#rec').change(function() {
     $(this).next('div').toggle();
-    $('#mult').next('div').hide();
+    $('#mult').toggle();
+    $('#multT').toggle();
 });
 
 /** Week view **/
