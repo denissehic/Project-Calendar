@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 
+<style>
+    .tableRow:hover{
+      background-color: lightgrey;
+    }
+</style>
+
 <head>
     <title>448 Calendar</title>
     <meta charset="utf-8">
@@ -49,8 +55,8 @@
                                     <th>Saturday</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody id = "month">
+                                <tr class = "tableRow">
                                     <!-- </button> -<button type="button" class="btn btn-success">Rounded corners</button> -->
                                     <td id="sunday0">
                                         </button>
@@ -74,7 +80,7 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class = "tableRow">
                                     <td id="sunday1">
                                         </button>
                                     </td>
@@ -97,7 +103,7 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class = "tableRow">
                                     <td id="sunday2">
                                         </button>
                                     </td>
@@ -120,7 +126,7 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class = "tableRow">
                                     <td id="sunday3">
                                         </button>
                                     </td>
@@ -143,7 +149,7 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class = "tableRow">
                                     <td id="sunday4">
                                         </button>
                                     </td>
@@ -166,7 +172,7 @@
                                         </button>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class = "tableRow">
                                     <td id="sunday5">
                                         </button>
                                     </td>
@@ -194,6 +200,30 @@
                     </div>
                 </div>
                 <div class="col-md-4 w3-border w3-border-black">
+                  <div id = "eventAdder">
+                    <form>
+                      <label for="date">Enter Date</label>
+                      <input type="date" id="event_date"><br>
+
+                      Time Frame?
+                      <input type="checkbox" name="time" id="time" value="0" />
+                      <div id="time" style="display:none">
+                      <label>Time Frame: </label>
+                      <input type="time" id="start_time"> to <input type="time" id="end_time"><br>
+                      </div>
+
+                      Multiple Days?
+                      <input type="checkbox" name="mult" id="mult" value="0" />
+                      <div id="mult" style="display:none">
+                        <label>End Date: </label>
+                        <input type="date" id="end_date"><br>
+                      </div>
+
+                      <br>
+                      <label for="date">Enter event</label>
+                      <input type="text" class="form-control" id="event_date">  <br>
+                  </form>
+                </div>
                     <div id="event"></div>
                     <div id="event2"></div>
                     <div id="event3"></div>
@@ -202,19 +232,13 @@
                     <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black" id="btnEventWrite" onclick="javascript: addEvent(queryString)">Create a new event</button>
                     <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black" id="btnEventRead" onclick="javascript : readEvent(queryString)">View events</button>
                     <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black " id="btnEvenRemove" onclick="javascript: removeEvent(queryString)">Remove an event</button>
-
-
                 </div>
-
-
             </div>
         </div>
     </div>
     <script src="calendarMain.js"></script>
     <script src="eventHandler.js"></script>
     <script src="month.js"></script>
-
-
 </body>
 
 </html>
