@@ -14,74 +14,68 @@ function addEvent() {
         multi: null
     };
 
-    var x = document.getElementById("event_date");
-    event.date = x.value;
+    //event date
+    var event_date = document.getElementById("event_date").value, //2016-08-01
+        queryString = event_date.toString().substring(5,7) + event_date.toString().substring(8,10) + event_date.toString().substring(0,4);
+    event.date = event_date;    
 
-
-    var queryString = x.value.toString().substring(5,7) + x.value.toString().substring(8,10) + x.value.toString().substring(0,4);
-
-    var end = document.getElementById("end_date").value;
-    if(end == "" && document.getElementById("mult").checked)
+    //check multi
+    if(document.getElementById("mult").checked)
     {
-      alert("pls select an event");
+        if (document.getElementById("end_date").value != "") {
+            event.end_date = document.getElementById("end_date").value;
+            event.multi = "mult";
+        }
+        else {
+            alert("Please select an end date");
+        }
     }
-    else {
-      event.end_date = end;
-    }
 
-
-
-
-
-    if((document.getElementById("start_time").value == null || document.getElementById("end_time").value == null) && document.getElementById("time").checked)
-    {
-      alert("pls select a time");
-    }
-    else if(document.getElementById("time").checked){
-      event.start_time = document.getElementById("start_time").value;
-      event.end_time = document.getElementById("end_time").checked;
+    //check times
+    if(document.getElementById("time").checked) {
+        if ((document.getElementById("start_time").value != null && document.getElementById("end_time").value != null)) {
+            event.start_time = document.getElementById("start_time").value;
+            event.end_time = document.getElementById("end_time").checked;
+        }
+        else {
+            alert("Please select a time");
+        }
     }
     else {
         event.start_time = "00:00"
         event.end_time = "24:00"
     }
 
-
-
-    if (document.getElementById("mult").checked)
-    {
-      event.multi = "mult";
-    }
+    //check recurring
     if (document.getElementById("rec").checked)
     {
       if(document.getElementById("weekly").checked)
       {
         event.rec = "weekly";
       }
-      if(document.getElementById("biweekly").checked)
+      else if(document.getElementById("biweekly").checked)
       {
         event.rec = "biweekly";
       }
-      if(document.getElementById("monthly").checked)
+      else if(document.getElementById("monthly").checked)
       {
         event.rec = "monthly";
       }
+      else {
+        alert("Please enter a recurring option")
+      }
     }
 
-
-
-    var descriptionPromptInput = document.getElementById("event_name");
-
-    event.description = descriptionPromptInput.value;
-
-
-
-    if (descriptionPromptInput.value == "") {
-        alert("Please type in an event.");
-    } else {
-        $.post("eventFile.php", event);
-        readEvent(queryString);
+    //check description
+    if(document.getElementById("event_name").value) {
+        event.description = document.getElementById("event_name").value;
     }
+    else {
+        alert("Please enter an event description");
+    }
+    
+    $.post("eventFile.php", event);
+    readEvent(queryString);
 }
 
 /**
