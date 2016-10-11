@@ -8,7 +8,6 @@ view, and remove events for a selectedDate date.
 var currentMonth = "08";
 var currentYear =  "2016";
 var queryString = "";
-
 /**
 The function takes in the month and year selected by the
 user and assigns it to the currentMonth and currentYear.
@@ -24,6 +23,17 @@ Functions added to show/hide forms in the Event adder
 $("#btnEventWrite").click(function(e) {
     $("#eventAdder").toggle();
     e.preventDefault();
+});
+
+$("#confirmAdd").click(function(e) {
+    $("#eventAdder").toggle();
+    e.preventDefault();
+    document.getElementById("start_time").value="";
+    document.getElementById("end_time").value="";
+    document.getElementById("end_date").value="";
+    document.getElementById("weekly").checked = false;
+    document.getElementById("biweekly").checked = false;
+    document.getElementById("monthly").checked = false;
 });
 
 $('#time').change(function() {
@@ -49,17 +59,26 @@ $('#rec').change(function() {
 });
 
 /** Week view **/
-
-$('.tableRow').click(function(){
-     $('.tableRow').hide(); // hide all rows
-     $("#mon").show();
-     $(this).show(); // show the clicked one
-});
+var flag = false;
+function weekFunction(){
+  flag = true;
+      $('.tableRow').click(function(){
+        if(flag == true ) {
+         $('.tableRow').hide(); // hide all rows
+         $("#mon").show();
+         $("#wek").hide();
+         $(this).show(); // show the clicked one
+       }
+       });
+}
 
 $("#mon").click(function(e) {
-     $('.tableRow').show(); // hide all rows
+    flag = false;
+     $('.tableRow').show(); // show all rows
      $("#mon").hide();
+     $("#wek").show();
 });
+
 
 
 /** Creates button for the month of August */

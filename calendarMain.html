@@ -67,7 +67,7 @@
                                     <td id="tuesday0">
                                         </button>
                                     </td>
-                                    <td id="wednesday0">
+                                    <td id="wednesday0" class = "banana">
                                         </button>
                                     </td>
                                     <td id="thursday0">
@@ -207,7 +207,7 @@
 
                       <samp> Time Frame? </samp>
                       <input type="checkbox" name="time" id="time" value="0" />
-                      <div id="time" style="display:none">
+                      <div id="timeO" style="display:none">
                       <label>Time Frame: </label>
                       <input type="time" id="start_time"> to <input type="time" id="end_time"><br>
                       </div>
@@ -215,7 +215,7 @@
 
                       <samp id = "multT"> Multiple Days? </samp>
                       <input type="checkbox" name="mult" id="mult" value="0" />
-                      <div id="mult" style="display:none">
+                      <div id="multO" style="display:none">
                         <label>End Date: </label>
                         <input type="date" id="end_date"><br>
                       </div>
@@ -223,7 +223,7 @@
 
                       <samp id = "recT"> Recurring Event? </samp>
                       <input type="checkbox" name="rec" id="rec" value="0" />
-                      <div id="rec" style="display:none">
+                      <div id="recO" style="display:none">
                       <input type="radio" name="rec" id="weekly" value="1"/> Weekly<br>
                       <input type="radio" name="rec" id="biweekly" value="2" /> Biweekly<br>
                       <input type="radio" name="rec" id="monthly" value="4" /> Monthly
@@ -231,7 +231,7 @@
                       <br><br>
                       <label for="date">Enter event</label>
                       <input type="text" class="form-control" id="event_date">  <br>
-                      <button type="button" class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black" >Submit</button>
+                      <button type="button" class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black" id = "confirmAdd" >Submit</button>
                       <br>
                   </form>
                 </div>
@@ -243,9 +243,12 @@
                     <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black" id="btnEventWrite" >Create a new event</button>
                     <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black" id="btnEventRead" onclick="javascript : readEvent(queryString)">View events</button>
                     <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black " id="btnEvenRemove" onclick="javascript: removeEvent(queryString)">Remove an event</button>
-                    <div id = "mon" style = "display:none">
-                    <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black " id="monthView">Back to Month View</button>
-                    </div>
+                      <div id = "mon" style = "display:none">
+                      <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black " id="monthView" onclick = "changeFlag()">Back to Month View</button>
+                      </div>
+                      <div id = "wek">
+                      <button class="w3-btn w3-xlarge w3-dark-grey w3-hover-light-grey w3-border-black " id="weekView" onclick = "weekFunction()">Week View</button>
+                      </div>
                 </div>
             </div>
         </div>
