@@ -10,50 +10,73 @@ function addEvent() {
         description: "no description",
         start_time: "no time",
         end_time: "no time",
-        type: "single"
+        rec: null,
+        multi: null
     };
+
     var x = document.getElementById("event_date");
-    var text = x.value.toString().substring(5,7) + x.value.toString().substring(8,10) + x.value.toString().substring(0,4);
+    event.date = x.value;
+
+
+    var queryString = x.value.toString().substring(5,7) + x.value.toString().substring(8,10) + x.value.toString().substring(0,4);
 
     var end = document.getElementById("end_date").value;
-    if(end == "")
+    if(end == "" && document.getElementById("mult").checked)
     {
-      alert("empty");
+      alert("pls select an event");
     }
     else {
       event.end_date = end;
     }
-    event.start_time = document.getElementById("start_time").value;
-    event.end_time = document.getElementById("end_time").value;
-    if(event.start_time == ""){
-      event.start_time = "00:00"
+
+
+
+
+
+    if((document.getElementById("start_time").value == null || document.getElementById("end_time").value == null) && document.getElementById("time").checked)
+    {
+      alert("pls select a time");
     }
-    if(event.end_time == ""){
-      event.end_time = "24:00"
+    else if(document.getElementById("time").checked){
+      event.start_time = document.getElementById("start_time").value;
+      event.end_time = document.getElementById("end_time").checked;
     }
+    else {
+        event.start_time = "00:00"
+        event.end_time = "24:00"
+    }
+
+
 
     if (document.getElementById("mult").checked)
     {
-      event.type = "mult";
+      event.multi = "mult";
     }
     if (document.getElementById("rec").checked)
     {
-      event.type = "rec";
+      if(document.getElementById("weekly").checked)
+      {
+        event.rec = "weekly";
+      }
+      if(document.getElementById("biweekly").checked)
+      {
+        event.rec = "biweekly";
+      }
+      if(document.getElementById("monthly").checked)
+      {
+        event.rec = "monthly";
+      }
     }
 
-    alert(event.type);
-    var queryString = text;
 
 
-
-    event.date = queryString;
     var descriptionPromptInput = document.getElementById("event_name");
 
     event.description = descriptionPromptInput.value;
 
 
 
-    if (descriptionPromptInput == "") {
+    if (descriptionPromptInput.value == "") {
         alert("Please type in an event.");
     } else {
         $.post("eventFile.php", event);
