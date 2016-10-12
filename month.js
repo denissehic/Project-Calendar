@@ -4,11 +4,40 @@
  * what day of the week the month starts on.
  */
 var getStartOfMonth = function(year, month) {
-
-    var day = new Date(year + "-" + month + "-01").getDay();
-    day = (day === 0) ? 7 : day;
+    var day = 0;
+    switch(month) {
+        case 8:
+            day = 1;
+            break;
+        case 9:
+            day = 4;
+            break;
+        case 10:
+            day = 6;
+            break;
+        case 11:
+            day = 2;
+            break;
+        case 12:
+            day = 4;
+            break;
+        case 1:
+            day = 0;
+            break;
+        case 2:
+            day = 3;
+            break;
+        case 3:
+            day = 3;
+            break;
+        case 4:
+            day = 6;
+            break;
+        case 5:
+            day = 1;
+            break;
+    }
     return day;
-
 }
 
 /**
@@ -115,7 +144,7 @@ function update2(x) {
     }
 
     queryString = currentMonth + pad(x) + currentYear;
-    document.getElementById('selectedDate').innerHTML = "Selected month: " + currentMonth + "/" + pad(x) + "/" + currentYear;
+    document.getElementById('selectedDate').innerHTML = "Selected Date: " + currentMonth + "/" + pad(x) + "/" + currentYear;
     readEvent(queryString);
     return;
 }

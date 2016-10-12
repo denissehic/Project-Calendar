@@ -1,11 +1,10 @@
-
 /**
 Initialize the currentMonth, currentYear, and queryString
 variables. currentMonth and currentYear are used to
 generate a queryString. The queryString is then used to add,
 view, and remove events for a selectedDate date.
 */
-var currentMonth = "08";
+var currentMonth = "10";
 var currentYear =  "2016";
 var queryString = "";
 /**
@@ -160,4 +159,4 @@ wrapper.appendChild(may);
 /**
 This starts the program off on the first mon of the academic year.
 */
-document.getElementById("calendar").onload = function() {setupCalendar("2016",8)};
+document.getElementById("calendar").onload = function() {setupCalendar("2016",10)};

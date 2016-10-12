@@ -22,6 +22,5 @@ class Calendar {
     }
 }
 $calendar = new Calendar;
-$calendar->deleteEvent($_REQUEST['event_id']);
-echo "Your events for " . substr($dateLook, 0,2). "/". substr($dateLook, 2,2) ."/" . substr($dateLook, 4,9) . " are: " . "<br>";
+$calendar->deleteEvent($_REQUEST['ind']);
 ?>

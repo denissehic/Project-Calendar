@@ -10,7 +10,7 @@ $date = substr($dateLook, 4,8) . "-" . substr($dateLook, 0,2) . "-" . substr($da
 class Calendar {
 	public function getEvents($event_date) {
 		$db = $this->getDB();
-		$records = $db->query("SELECT * FROM calendarV2 WHERE event_date='" . $event_date . "'");
+		$records = $db->query("SELECT * FROM calendarV2 WHERE event_date='" . $event_date . "' ORDER BY start_time ASC");
 		$data = array();
 		while($row = $records->fetch_assoc()) {
 			$data[] = $row; 
@@ -26,8 +26,26 @@ class Calendar {
 }
 $calendar = new Calendar;
 $data = $calendar->getEvents($date);
-echo "Your events for " . substr($dateLook, 0,2). "/". substr($dateLook, 2,2) ."/" . substr($dateLook, 4,9) . " are: " . "<br>";
-foreach ($data as $event) {
-	echo $event['description'] . " " . substr($event['start_time'], 0, 5) . "-" . substr($event['end_time'], 0, 5) . " Event ID: " .  $event['event_id'] . " ";
+echo "<br>Your events for " . substr($dateLook, 0,2). "/". substr($dateLook, 2,2) ."/" . substr($dateLook, 4,9) . " are: " . "<br>";
+foreach ($data as $key => $event) {
+	$red = false;
+	$event_string = $event['description'] . " | " . substr($event['start_time'], 0, 5) . "-" . substr($event['end_time'], 0, 5) . " | Event ID: " .  $event['event_id'] . " <br>";
+	$ind = $key;
+	if($key > 0) {
+		while($ind >=0) {
+			if($event['start_time'] < $data[$ind - 1]['end_time']) {
+				$red = true;
+			}
+			$ind--;
+		}
+	}
+	if($red) {
+		echo "<font color='red'>" . $event_string . "</font>";
+	}
+	else {
+		echo $event_string;
+	}
+	
 }
+echo "<br>";
 ?>

@@ -5,23 +5,26 @@
     Each string of data given from "eventHandler.js" will be on its own line.
 */
 date_default_timezone_set("America/Chicago");
-
 class Calendar {
 	public function addEvent($data) {
 		$db = $this->getDB();
 		if ($data['multi']) {
 			$date = date("Y-m-d", strtotime($data['sdate']));
-			while (strtotime($date) < strtotime($data['edate'])) {
-				$insert_string = "'" . $data['description'] . "', '" . $date . "', '" . $data['stime'] . "', '" . $data['etime'] . "'";
-				$db->query("INSERT INTO calendarV2 (description, event_date, start_time, end_time) VALUES (" . $insert_string . ")");
+			$id = intval($db->query("SELECT MAX(event_id) as id FROM calendarV2")->fetch_assoc()['id']);
+			$id += 1;
+			while (strtotime($date) <= strtotime($data['edate'])) {
+				$insert_string = $id . ", " . "'" . $data['description'] . "', '" . $date . "', '" . $data['stime'] . "', '" . $data['etime'] . "'";
+				$db->query("INSERT INTO calendarV2 (event_id, description, event_date, start_time, end_time) VALUES (" . $insert_string . ")");
 				$date = date("Y-m-d", strtotime($date . "+1 day"));
 			}
 		}
 		else if($data['rec']) {
-			while (strtotime($date) < strtotime($data['edate'])) {
-				$date = date("Y-m-d", strtotime($data['sdate']));
-				$insert_string = "'" . $data['description'] . "', '" . $date . "', '" . $data['stime'] . "', '" . $data['etime'] . "'";
-				$db->query("INSERT INTO calendarV2 (description, event_date, start_time, end_time) VALUES (" . $insert_string . ")");
+			$date = date("Y-m-d", strtotime($data['sdate']));
+			$id = intval($db->query("SELECT MAX(event_id) as id FROM calendarV2")->fetch_assoc()['id']);
+			$id += 1;
+			while (strtotime($date) <= strtotime("2016-10-31")) {//< strtotime($data['edate'])) {
+				$insert_string = $id . ", " . "'" . $data['description'] . "', '" . $date . "', '" . $data['stime'] . "', '" . $data['etime'] . "'";
+				$db->query("INSERT INTO calendarV2 (event_id, description, event_date, start_time, end_time) VALUES (" . $insert_string . ")");
 				switch ($data['rec']) {
 					case 'weekly':
 						$date = date("Y-m-d", strtotime($date . "+1 week"));
@@ -39,8 +42,11 @@ class Calendar {
 			}
 		}
 		else {
-			$insert_string = "'" . $data['description'] . "', '" . $date . "', '" . $data['stime'] . "', '" . $data['etime'] . "'";
-			$db->query("INSERT INTO calendarV2 (description, event_date, start_time, end_time) VALUES (" . $insert_string . ")");
+			$date = date("Y-m-d", strtotime($data['sdate']));
+			$id = intval($db->query("SELECT MAX(event_id) as id FROM calendarV2")->fetch_assoc()['id']);
+			$id += 1;
+			$insert_string = $id . ", " . "'" . $data['description'] . "', '" . $date . "', '" . $data['stime'] . "', '" . $data['etime'] . "'";
+			$db->query("INSERT INTO calendarV2 (event_id, description, event_date, start_time, end_time) VALUES (" . $insert_string . ")");
 		}
 	}
 	public function getDB() {
@@ -51,15 +57,15 @@ class Calendar {
 	}
 }
 $data = array(
-		'description' => 'description', //$_POST['description'],
+		'description' => $_POST['description'],
 		'sdate' => $_POST['date'],
-		'edate' => 'end_date', //$_POST['end_date'],
-		'stime' => 'stime', //$_POST['start_time'],
-		'etime' => 'etime', //$_POST['end_time'],
-		'rec' => $_POST['recurring'] ? $_POST['recurring'] : '',
-		'multi' => $_POST['multi'] ? $_POST['multi'] : ''
+		'edate' => $_POST['end_date'],
+		'stime' => $_POST['start_time'],
+		'etime' => $_POST['end_time'],
+		'rec' => $_POST['rec'],
+		'multi' => $_POST['multi']
 );
-
+var_dump($data);
 $calendar = new Calendar;
 $calendar->addEvent($data);
 

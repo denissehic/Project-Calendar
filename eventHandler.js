@@ -16,7 +16,8 @@ function addEvent() {
 
     //event date
     var event_date = document.getElementById("event_date").value, //2016-08-01
-        queryString = event_date.toString().substring(5,7) + event_date.toString().substring(8,10) + event_date.toString().substring(0,4);
+        queryString = event_date.toString().substring(5,7) + event_date.toString().substring(8,10) + event_date.toString().substring(0,4),
+        valid = true;
     event.date = event_date;    
 
     //check multi
@@ -28,6 +29,7 @@ function addEvent() {
         }
         else {
             alert("Please select an end date");
+            valid = false;
         }
     }
 
@@ -35,10 +37,11 @@ function addEvent() {
     if(document.getElementById("time").checked) {
         if ((document.getElementById("start_time").value != null && document.getElementById("end_time").value != null)) {
             event.start_time = document.getElementById("start_time").value;
-            event.end_time = document.getElementById("end_time").checked;
+            event.end_time = document.getElementById("end_time").value;
         }
         else {
             alert("Please select a time");
+            valid = false;
         }
     }
     else {
@@ -47,22 +50,40 @@ function addEvent() {
     }
 
     //check recurring
-    if (document.getElementById("rec").checked)
-    {
-      if(document.getElementById("weekly").checked)
-      {
+    if (document.getElementById("rec").checked) {
+      if(document.getElementById("sun").checked) {
+        event.rec = "sunday";
+      }
+      else if(document.getElementById("mond").checked) {
+        event.rec = "monday";
+      }
+      else if(document.getElementById("tue").checked) {
+        event.rec = "tuesday";
+      }
+      else if(document.getElementById("wed").checked) {
+        event.rec = "wednesday";
+      }
+      else if(document.getElementById("thu").checked) {
+        event.rec = "thursday";
+      }
+      else if(document.getElementById("fri").checked) {
+        event.rec = "friday";
+      }
+      else if(document.getElementById("sat").checked) {
+        event.rec = "saturday";
+      }
+      else if(document.getElementById("weekly").checked) {
         event.rec = "weekly";
       }
-      else if(document.getElementById("biweekly").checked)
-      {
+      else if(document.getElementById("biweekly").checked) {
         event.rec = "biweekly";
       }
-      else if(document.getElementById("monthly").checked)
-      {
+      else if(document.getElementById("monthly").checked) {
         event.rec = "monthly";
       }
       else {
-        alert("Please enter a recurring option")
+        alert("Please enter a recurring option");
+        valid = false;
       }
     }
 
@@ -72,10 +93,18 @@ function addEvent() {
     }
     else {
         alert("Please enter an event description");
+        valid = false;
+    }
+
+    if(valid) {
+       $.post("eventFile.php", event, function(data) {
+             $('#btnEventWrite').trigger('click');
+             readEvent(queryString);
+        }); 
     }
     
-    $.post("eventFile.php", event);
-    readEvent(queryString);
+    
+
 }
 
 /**
@@ -85,8 +114,7 @@ for the specified date. Then it is displayed to the user.
 */
 function readEvent(queryString) {
     var eventReader = {
-        dateLookup: "no date",
-        eventList: "No events"
+        dateLookup: "no date"
     };
 
     var dateID = queryString;
@@ -94,9 +122,7 @@ function readEvent(queryString) {
     if (dateID != null) {
         document.getElementById("event2").innerHTML = "Reading events...";
         $.post("eventReader.php", eventReader, function(data) {
-
             document.getElementById("event2").innerHTML = data;
-
         });
     }
 }
@@ -115,14 +141,19 @@ function removeEvent(queryString) {
     if (queryString.length != 8) {
         alert("Please select date.");
     } else {
-        var dateID = queryString;
         eventFinder.dateLookup = queryString;
-        var indInput = prompt("Enter the index");
+        var indInput = prompt("Enter Event ID");
         eventFinder.ind = indInput;
 
-        $.post("eventRemover.php", eventFinder, function(data) {
-            document.getElementById("event3").innerHTML = data;
+        $.post("eventRemover.php", eventFinder);
+        document.getElementById("event2").innerHTML = "Reading events...";
+        $.post("eventReader.php", eventFinder, function(data) {
+            if(data != null) {
+                document.getElementById("event2").innerHTML = data;
+            }
+            else {
+                document.getElementById("event2").innerHTML = ""
+            }       
         });
     }
-
 }
